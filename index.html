@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chenda — Kraken Live</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="brand">
+      <div class="title">Chenda — Kraken Live (no Binance)</div>
+      <small id="status-text">Loading…</small>
+    </div>
+    <div class="stamp">Last updated: <span id="updated-at">—</span></div>
+    <div class="controls"><button id="refresh-btn" class="ghost" type="button">🔄 Refresh</button></div>
+  </header>
+  <main>
+    <section class="view">
+      <div class="col">
+        <div class="card">
+          <div class="card-h">
+            <span>Kraken Symbols</span>
+            <span class="pill"><strong id="kraken-count">0</strong> symbols</span>
+          </div>
+          <div id="kraken-list" class="list"></div>
+        </div>
+        <div class="card">
+          <div class="card-h">
+            <span>Whale Levels (Top)</span>
+            <span class="pill" id="whale-meta">—</span>
+          </div>
+          <table id="whale-table">
+            <thead><tr><th>Symbol</th><th>Side</th><th>Price</th><th>Qty</th><th>USD</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-h">
+            <span>Latest Snapshot (/signal)</span>
+            <span class="pill">read-only</span>
+          </div>
+          <pre id="metrics-pre">—</pre>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="foot">© Chenda — Kraken-only view</footer>
+  <script src="./live-signals.js?v=3"></script>
+</body>
+</html>
