@@ -1,0 +1,11 @@
+{
+  "universes": {
+    "kraken": [
+      "KRAKEN:XRPUSD",
+      "KRAKEN:BTCUSD",
+      "KRAKEN:SOLUSD",
+      "KRAKEN:LINKUSD"
+    ]
+  },
+  "min_usd": 200000
+}

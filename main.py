@@ -23,6 +23,50 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 
+import os, json
+
+CFG_PATH = os.environ.get("CFG_PATH", "config.json")
+
+def _load_cfg():
+    """
+    Load configuration in this order:
+    1) CHENDA_CFG_JSON env var (JSON string)
+    2) config.json file (path from CFG_PATH env or default "config.json")
+    3) Built-in safe defaults (Kraken-only)
+    This ensures the app never crashes when config.json is missing.
+    """
+    # 1) ENV override
+    raw = os.environ.get("CHENDA_CFG_JSON")
+    if raw:
+        try:
+            return json.loads(raw)
+        except Exception as e:
+            print("WARN: CHENDA_CFG_JSON not valid JSON:", e)
+
+    # 2) File
+    try:
+        with open(CFG_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"WARN: {CFG_PATH} not found; using defaults")
+    except Exception as e:
+        print(f"WARN: failed to read {CFG_PATH}: {e}; using defaults")
+
+    # 3) Defaults (Kraken-only)
+    return {
+        "universes": {
+            "kraken": [
+                "KRAKEN:XRPUSD",
+                "KRAKEN:BTCUSD",
+                "KRAKEN:SOLUSD",
+                "KRAKEN:LINKUSD"
+            ]
+        },
+        "min_usd": 200000
+    }
+
+
+
 # ---------- Config ----------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CFG_PATH = os.path.join(BASE_DIR, "config.json")
