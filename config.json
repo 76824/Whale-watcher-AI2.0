@@ -1,0 +1,22 @@
+{
+  "universe": [
+    "BTC",
+    "ETH",
+    "SOL",
+    "XRP",
+    "LINK",
+    "ADA",
+    "DOGE",
+    "AVAX",
+    "ATOM",
+    "TRX"
+  ],
+  "quote_prefs": [
+    "USD",
+    "USDT",
+    "EUR",
+    "USDC"
+  ],
+  "depth_count": 20,
+  "whale_usd_floor": 100000
+}
